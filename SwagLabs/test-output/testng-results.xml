@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="7024" started-at="2022-01-21T15:12:46Z" finished-at="2022-01-21T15:12:53Z">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="7024" started-at="2022-01-21T15:12:46Z" finished-at="2022-01-21T15:12:53Z">
+      <class name="com.SwagLabs.TestCases.LoginToSwagLabs">
+        <test-method status="PASS" signature="setUpSuite()[pri:0, instance:com.SwagLabs.TestCases.LoginToSwagLabs@2c34f934]" name="setUpSuite" is-config="true" duration-ms="647" started-at="2022-01-21T15:12:46Z" finished-at="2022-01-21T15:12:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpSuite -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.SwagLabs.TestCases.LoginToSwagLabs@2c34f934]" name="setup" is-config="true" duration-ms="2770" started-at="2022-01-21T15:12:46Z" finished-at="2022-01-21T15:12:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="loginApp()[pri:0, instance:com.SwagLabs.TestCases.LoginToSwagLabs@2c34f934]" name="loginApp" duration-ms="3492" started-at="2022-01-21T15:12:49Z" finished-at="2022-01-21T15:12:53Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginApp -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.SwagLabs.TestCases.LoginToSwagLabs@2c34f934]" name="tearDown" is-config="true" duration-ms="730" started-at="2022-01-21T15:12:53Z" finished-at="2022-01-21T15:12:53Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.SwagLabs.TestCases.LoginToSwagLabs -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>
