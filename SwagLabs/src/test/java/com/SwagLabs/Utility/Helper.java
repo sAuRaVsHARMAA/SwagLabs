@@ -16,22 +16,25 @@ public class Helper {
 	
 	//screenshot, alerts, frame, windows, javascript executor
 	
-	public static void captureScreenshot(WebDriver driver)
+	public static String captureScreenshot(WebDriver driver)
 	{
 		TakesScreenshot ts=(TakesScreenshot)driver;
 		File src=ts.getScreenshotAs(OutputType.FILE);
+		String screenshotPath=System.getProperty("user.dir")+"/Screenshots/"+getCurrentDate()+".png";
 		try {
-			FileHandler.copy(src, new File("./Screenshot/"+getCurrentDate()+".png"));
+			FileHandler.copy(src, new File(screenshotPath));
 		} catch (IOException e) {
 			System.out.println("Unable to capture screenshot");
 			}
+		
+		return screenshotPath;
 		
 		
 	}
 	
 	public static String getCurrentDate()
 	{
-		DateFormat dateformatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+		DateFormat dateformatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
 		Date currentDate=new Date();
 		return dateformatter.format(currentDate);
 	}

@@ -1,5 +1,8 @@
 package com.SwagLabs.pages;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -11,6 +14,10 @@ import com.SwagLabs.Utility.BrowserFactory;
 import com.SwagLabs.Utility.ConfigDataProvider;
 import com.SwagLabs.Utility.ExcelDataProvider;
 import com.SwagLabs.Utility.Helper;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 import freemarker.template.utility.CaptureOutput;
 
@@ -19,6 +26,8 @@ public class BaseClass {
 	protected WebDriver driver;
 	protected ExcelDataProvider excel;
 	protected ConfigDataProvider configuration;
+	public ExtentReports report;
+	public ExtentTest logger;
 	
 	
 	@BeforeSuite
@@ -26,6 +35,9 @@ public class BaseClass {
 	{
 		excel=new ExcelDataProvider();
 		configuration=new ConfigDataProvider();
+		ExtentHtmlReporter extent=new ExtentHtmlReporter(new File(System.getProperty("user.dir")+"/Reports/SwagLabs "+Helper.getCurrentDate()+".html"));
+		report=new ExtentReports();
+		report.attachReporter(extent);
 	}
 	@BeforeClass
 	public void setup()
@@ -38,14 +50,19 @@ public class BaseClass {
 	{
 		if(result.getStatus()==ITestResult.FAILURE)
 		{
-			Helper.captureScreenshot(driver);
+			try {
+				logger.fail("test case failed", MediaEntityBuilder.createScreenCaptureFromPath(Helper.captureScreenshot(driver)).build());
+			} catch (IOException e) {}
 		}
+		
+		report.flush();
 	}
 	
 	@AfterClass
 	public void tearDown()
 	{
 		BrowserFactory.quitBrowser(driver);
+		
 	}
 	
 
