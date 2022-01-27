@@ -13,7 +13,7 @@ public class LoginToSwagLabs extends BaseClass {
 		logger=report.createTest("Login to SwagLabs");
 		LoginPage login_page=PageFactory.initElements(driver, LoginPage.class);
 		logger.info("Application Started");
-		login_page.loginToSwagLabs(excel.getStringData(0,0,"Sheet1"),excel.getStringData(0,0,"Sheet1"));
+		login_page.loginToSwagLabs(excel.getStringData(0,0,"Sheet1"),excel.getStringData(0,1,"Sheet1"));
 		logger.pass("Login Success");
 
 	}

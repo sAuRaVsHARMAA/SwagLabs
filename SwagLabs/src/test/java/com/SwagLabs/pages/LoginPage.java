@@ -13,7 +13,7 @@ public class LoginPage {
 		this.driver=driver;
 	}
 	
-	@FindBy(how=How.ID, using="user-name1") WebElement username;
+	@FindBy(how=How.ID, using="user-name") WebElement username;
 	@FindBy(how=How.ID,using="password") WebElement password;
 	@FindBy(how=How.ID,using="login-button") WebElement login_button;
 	

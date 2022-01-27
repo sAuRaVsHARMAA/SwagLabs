@@ -9,6 +9,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import com.SwagLabs.Utility.BrowserFactory;
 import com.SwagLabs.Utility.ConfigDataProvider;
@@ -39,10 +40,12 @@ public class BaseClass {
 		report=new ExtentReports();
 		report.attachReporter(extent);
 	}
+	
+	@Parameters({"browser","urlToBeTested"})
 	@BeforeClass
-	public void setup()
+	public void setup(String browser, String url)
 	{
-		driver=BrowserFactory.launchBrowser(driver, configuration.getDataFromConfig("browser"), configuration.getDataFromConfig("appUrl"));
+		driver=BrowserFactory.launchBrowser(driver, browser, url);
 	}
 	
 	@AfterMethod

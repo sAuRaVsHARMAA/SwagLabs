@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
@@ -15,8 +16,10 @@ public class BrowserFactory {
 	{
 		if(browser.equalsIgnoreCase("Chrome"))
 		{
+			ChromeOptions options=new ChromeOptions();
+			options.setExperimentalOption("excludeSwitches", new String[] {"enable-automation"});
 			System.setProperty("webdriver.chrome.driver", "./Drivers/chromedriver.exe");
-			driver=new ChromeDriver();
+			driver=new ChromeDriver(options);
 		}
 		
 		else if(browser.equalsIgnoreCase("firefox"))
