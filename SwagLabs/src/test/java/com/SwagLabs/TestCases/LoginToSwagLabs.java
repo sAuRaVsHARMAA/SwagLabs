@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import com.SwagLabs.Utility.ExcelDataProvider;
 import com.SwagLabs.pages.BaseClass;
@@ -52,6 +53,61 @@ public class LoginToSwagLabs extends BaseClass {
 				logger.fail("Text does not match on the Row Number: "+ (count+1));
 		}
 		Assert.assertEquals(count, 4);
+		logger.pass("Sidebar Elements are Available");
+	}
+	
+	@Test(priority = 3)
+	public void socialNetworkingLogo()
+	{
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		logger=report.createTest("Social Networking Logo");
+		SoftAssert assertion=new SoftAssert();
+		try 
+		{
+		if(driver.findElement(By.xpath(".//li[@class='social_twitter']/a[@target='_blank']")).isDisplayed())
+		{
+			logger.pass("Twitter Logo is Available");
+			assertion.assertTrue(true);
+		}
+		else 
+		{
+			logger.fail("Twitter Logo is not Available");
+			assertion.assertTrue(false);
+		}
+		}catch(Exception e)
+		{logger.fail("Element NOt found "+e.getMessage());}
+		
+		try
+		{
+		if(driver.findElement(By.xpath(".//li[@class='social_facebook']/a[@target='_blan']")).isDisplayed())
+		{
+			logger.pass("Facebook Logo is Available");
+			assertion.assertTrue(true);
+		}
+		else 
+		{
+			logger.fail("Facebook Logo is not Available");
+			assertion.assertTrue(false);
+		}
+		}catch(Exception e)
+		{logger.fail("Element Not found "+e.getMessage());}
+		
+		try {
+		if(driver.findElement(By.xpath(".//li[@class='social_linkedin']/a[@target='_blank']")).isDisplayed())
+		{
+			logger.pass("Linkedin Logo is Available");
+			assertion.assertTrue(true);
+		}
+		else 
+		{
+			logger.fail("Linkedin Logo is not Available");
+			assertion.assertTrue(false);
+		}
+		}catch(Exception e)
+		{
+			logger.fail("Element Not found " +e.getMessage());
+		}
+		assertion.assertAll();	
 	}
 
 }
