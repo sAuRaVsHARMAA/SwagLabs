@@ -79,7 +79,7 @@ public class LoginToSwagLabs extends BaseClass {
 		
 		try
 		{
-		if(driver.findElement(By.xpath(".//li[@class='social_facebook']/a[@target='_blan']")).isDisplayed())
+		if(driver.findElement(By.xpath(".//li[@class='social_facebook']/a[@target='_blank']")).isDisplayed())
 		{
 			logger.pass("Facebook Logo is Available");
 			assertion.assertTrue(true);
