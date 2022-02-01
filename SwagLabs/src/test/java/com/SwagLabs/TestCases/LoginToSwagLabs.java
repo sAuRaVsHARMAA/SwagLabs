@@ -2,6 +2,7 @@ package com.SwagLabs.TestCases;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -108,6 +109,50 @@ public class LoginToSwagLabs extends BaseClass {
 			logger.fail("Element Not found " +e.getMessage());
 		}
 		assertion.assertAll();	
+		driver.findElement(By.cssSelector("button#react-burger-cross-btn")).click();
 	}
-
+	
+	
+	@Test(priority = 4)
+	public void validateSocialMediaLinks()
+	{
+		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		logger=report.createTest("Validate Social Media Links ");
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		ArrayList<WebElement> links_webelement=new ArrayList<WebElement>(driver.findElements(By.cssSelector("a[target='_blank']")));
+		String parent=driver.getWindowHandle();
+		SoftAssert assertion=new SoftAssert();
+		for(WebElement web:links_webelement)
+		{
+			web.click();
+		}
+		Set<String> allWindows=driver.getWindowHandles();
+		ArrayList<String> title = new ArrayList<String>();
+		for(String child:allWindows)
+		{
+			if(!parent.equalsIgnoreCase(child))
+			{
+				driver.switchTo().window(child);
+				title.add(driver.getTitle());
+				System.out.println(driver.getTitle());
+				driver.close();
+			}
+		}
+		driver.switchTo().window(parent);
+		for(int i=0;i<=title.size()-1;i++)
+		{
+			if(title.get(i).contains(excel.getStringData(i, 0, "Sheet3")))
+			{
+				logger.pass("Titles are Matching");
+				assertion.assertTrue(true);
+			}
+			
+			else {
+				
+			    logger.fail("Titles Does not match");
+			    assertion.assertTrue(false);		
+		}	
+	}
+		assertion.assertAll();
+}
 }
